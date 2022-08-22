@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     # Добавляем собственные приложения:
     "learning_logs",
     "usersapp",
-
 ]
 
 MIDDLEWARE = [
@@ -127,4 +126,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_URL = '/userapp/login'
+LOGIN_URL = "/userapp/login"
