@@ -1,13 +1,76 @@
-<p>
-    <a href="{% url 'learning_logs:index' %}">Learning Log</a> - 
-    <a href="{% url 'learning_logs:topics' %}">Topics</a> - 
-    {% if user.is_authenticated %}
-        Hello, {{ user.username }}. 
-    <a href="{% url 'usersapp:logout' %}">Log out<a/>
-    {% else %}
-    <a href ="{% url 'usersapp:register' %}">Register</a>
-    <a href="{% url 'usersapp:login' %}">Log in</a>
-    {% endif%}
-</p>    
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Learning Log</title>
+    {% bootstrap_css %} {% bootstrap_javascript jquery='full' %}
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+      <a class="navbar-brand" href="{% url 'learning_logs:index' %}">
+        Learning log</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle Navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'learning_logs:topics'%}">
+              Topics</a
+            >
+          </li>
+        </ul>
 
-{% block content %} {% endblock content%}
+        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <span class="navbar-text">Hello, <span class="text-primary">{{ user.username }}.</span></span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'usersapp:logout' %}">Log out</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'usersapp:register' %}">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'usersapp:login' %}">Log in</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <main role="main" class="container">
+      <div class="pb-2 mb-2 border-bottom">
+        {% block page_header %}{% endblock page_header %}
+      </div>
+      <div>{% block content %}{% endblock content %}</div>
+    </main>
+  </body>
+  
+  <br>
+
+  <footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright:
+      <a class="text-dark" href="https://mdbootstrap.com/">Mike Chirkov</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+</html>
